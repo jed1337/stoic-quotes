@@ -2,28 +2,32 @@ import React from 'react'
 import stoicApi from 'stoic-api'
 import styles from './App.module.css'
 import QuoteBox from "./components/QuoteBox/QuoteBox";
+import {Button, Container, Typography} from '@material-ui/core'
+import 'typeface-roboto'
 
 class App extends React.Component {
     state = {
-        quote:''
+        quote: ''
     }
 
     componentDidMount() {
         this.getQuote()
     }
 
-    getQuote = () =>{
+    getQuote = () => {
         this.setState({quote: stoicApi.random()})
     }
 
     render() {
         return (
-            <div>
+            <Container color={'Text primary'}>
                 <QuoteBox quote={this.state.quote}/>
                 <div>
-                    <button onClick={this.getQuote}>New quote</button>
+                    <Typography color={'primary'}>
+                        <Button onClick={this.getQuote}>New quote</Button>
+                    </Typography>
                 </div>
-            </div>
+            </Container>
         )
     }
 }
