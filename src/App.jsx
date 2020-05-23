@@ -1,8 +1,8 @@
 import React from 'react'
 import stoicApi from 'stoic-api'
 import styles from './App.module.css'
-import QuoteBox from "./components/QuoteBox/QuoteBox";
 import {Button, Container, Typography} from '@material-ui/core'
+import CustomAppBar from "./components/CustomAppBar/CustomAppBar"
 import 'typeface-roboto'
 
 class App extends React.Component {
@@ -19,15 +19,16 @@ class App extends React.Component {
     }
 
     render() {
+        const [quoteText, author] = this.state.quote.split(/[-―]/)
         return (
-            <Container color={'Text primary'}>
-                <QuoteBox quote={this.state.quote}/>
-                <div>
-                    <Typography color={'primary'}>
-                        <Button onClick={this.getQuote}>New quote</Button>
-                    </Typography>
-                </div>
-            </Container>
+            <div>
+                <CustomAppBar/>
+                <Container className={styles.main}>
+                    <Typography variant={'h5'}>{quoteText}</Typography>
+                    <Typography variant={'h6'}>{author}</Typography>
+                    <Button onClick={this.getQuote}>New quote</Button>
+                </Container>
+            </div>
         )
     }
 }
